@@ -4,8 +4,8 @@ class Event < ActiveRecord::Base
   validates :organizer_name, presence: true
   validates :organizer_email, presence: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
 
-  validates :date, presence: true, message: "Date field cannot be empty."
-  validates :date_is_valid
+  validates :date, presence: true
+  validate :date_is_valid
 
   def date_is_valid
     if date.present? && date < (Date.today)
